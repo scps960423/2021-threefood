@@ -9,7 +9,9 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "dns": "^0.2.2",
     "firebase": "^8.10.0",
+    "mssql": "^7.2.1",
     "vue": "^3.0.0",
     "vue-axios": "^3.2.5",
     "vue-resource": "^1.5.3",

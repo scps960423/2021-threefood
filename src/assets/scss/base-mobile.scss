@@ -1,0 +1,15 @@
+.base-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 100%;
+  width: 350px;
+  height: 100vh;
+  transition: $transition;
+  background-color: $light;
+  >.ct{
+    .in{
+      
+    }
+  }
+}

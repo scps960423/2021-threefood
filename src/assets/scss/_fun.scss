@@ -1,0 +1,200 @@
+@mixin rwd($max, $min: 0) {
+    //自訂 RWD 寬度，第一個參數是最大值，第二個參數是最小值
+
+    @if($rwd==true) {
+        $type: 'screen and (max-width: #{$max + 0px }) and (min-width: #{$min + 1px})';
+
+        @media #{$type} {
+            @content;
+        }
+    }
+}
+//狀態================================================================
+
+@mixin at($selector) { //在某個選擇器下的樣式，參數是選擇器
+
+    #{$selector} & {
+        @content;
+    }
+}
+
+@mixin js( $boolean: true ) { //有/無 js下的樣式表現，$boolean 是布林值
+
+    [data-js="#{$boolean}"] & {
+        @content;
+    }
+}
+
+@mixin admin( $boolean: true ) { //管理員/一般使用者 登入的樣式，$boolean 是布林值
+
+    [data-admin="#{$boolean}"] & {
+        @content;
+    }
+}
+
+@mixin bg-to-pic($img-src, $size: true, $height: null) { //依圖改變大小並置中，$img-src為圖片檔名，$size為false就不匯出寬高，參數為數字就會出指定倍數大小，$size為數字帶單位就會匯出指定大小，若指定$height就會當作高度使用
+    background-image: image-url($img-src);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    @if( $size == true ) { //如果是 true 就匯出大小
+        width: image-width($img-src);
+        height: image-height($img-src);
+
+    } @else if( $size == false ) { //如果是 false 就不匯出大小
+        
+    } @else { //如果是數字就會出指定大小
+        background-size: contain;
+
+        @if( $height != null ) { //如果有 $height 就給高
+            
+            @if( unitless($height) ) { //沒單位就是倍數
+                height: round( image-height($img-src) * $height);
+
+            } @else { //有單位就直接使用
+                height: $height;
+            }
+
+        } @else { //如果沒 $height ，高度就是 $size
+            
+            @if( unitless($size) ) { //沒單位就是倍數
+                height: round( image-height($img-src) * $size);
+
+            } @else { //有單位就直接使用
+                height: $size;
+            }
+        }
+
+        @if( unitless($size) ) { //沒單位就是倍數
+            width: round( image-width($img-src) * $size);
+
+        } @else { //有單位就直接使用
+            width: $size;
+        }
+    }
+}
+
+
+%center {
+    //齊中寬度
+    margin: 0 auto;
+
+    @if($rwd) {
+        max-width: $pc-width;
+    }
+
+    @else {
+        width: $pc-width;
+    }
+}
+
+%area-mobile {
+    //手機側欄模組
+
+    [data-index][data-type="0"],
+    [data-index][data-type="2"],
+    [data-index][data-type="4"] {
+
+        >.in {
+            margin-top: $interval-m;
+            margin-right: $interval-m;
+            margin-bottom: $interval-m;
+            margin-left: $interval-m;
+        }
+    }
+
+    .is-hide-header {
+        //在手機側欄模組上下 ".is-hide-header" 的 margin 樣式
+
+        >.in {
+            @extend %area-mobile-no-header;
+        }
+    }
+}
+
+%area-mobile-no-header {
+    //沒有 header 的手機側欄模組
+    margin-top: $interval-m !important;
+
+    >.in {
+
+        >.hd {
+            display: none !important;
+        }
+    }
+}
+
+%hide-text {
+    //隱藏文字的方法
+    text-indent: -9999px;
+    font: 0/0 a;
+    color: transparent;
+}
+
+//reset 重設樣式================================================================
+
+%reset-outer { //重新設定外部樣式
+    margin: 0;
+    position: static;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+}
+
+%reset-inner { //重新設定內部樣式
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    list-style: none;
+    background-color: transparent;
+    font-size: 1em;
+    font-weight: normal;
+    transition: initial;
+    line-height: 1.5;
+
+    &:before {
+        content: none;
+    }
+
+    &:after {
+        content: none;
+    }
+}
+
+%reset { //重新設定全部樣式
+    @extend %reset-outer;
+    @extend %reset-inner;
+}
+
+
+%btn { //按鈕組件
+    display: inline-block;
+    padding: $btn-padding;
+    border: $btn-border;
+    box-sizing: border-box;
+    line-height: 1;
+    text-align: center;
+    vertical-align: middle;
+    color: $btn-text-color;
+    cursor: pointer;
+    font-size: $font-size-s;
+    text-decoration: none;
+    background-color: $btn-bg-color;
+
+    &:link {
+        color: $btn-text-color;
+    }
+
+    &:visited {
+        color: $btn-text-color;
+    }
+
+    &:hover {
+        background-color: $btn-hover-bg-color;
+    }
+
+    &:active {
+        color: $btn-text-color;
+    }
+}

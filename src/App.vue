@@ -1,10 +1,47 @@
 <template>
-  <div id="nav">
+  <!-- <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
+      <Base />
+  </div> -->
+  <div :class="'group sys-root font-size-' + sysFontSize">
+    <div class="in">
+       <div class="base-wrapper">
+      <baseHeader :menu="menu" :dataFontSize="sysFontSize" />
+      <baseContent />
+      <baseFooter />
+    </div>
+    </div>
+   
   </div>
-  <router-view/>
 </template>
+<script>
+import baseHeader from "@/components/base-header.vue";
+import baseContent from "@/components/base-content.vue";
+import baseFooter from "@/components/base-footer.vue";
+export default {
+  components: {
+    baseHeader,
+    baseContent,
+    baseFooter,
+  },
+  data: function () {
+    return {
+      sysFontSize: "small",
+      menu: [
+        {
+          name: "Home",
+          path: "/",
+        },
+        {
+          name: "About",
+          path: "/about",
+        },
+      ],
+    };
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
@@ -15,16 +52,29 @@
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+.sys-root {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: $body-font-size-m; //預設大小
+  font-family: $base-font-style;
+  color: $body-font-color;
+  position: relative;
+  >.in{
+    background-color: $light;
+  }
+  &.font-size-large {
+    //大字
+    font-size: $body-font-size-l;
+  }
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  &.font-size-medium {
+    //中字
+    font-size: $body-font-size-m;
+  }
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  &.font-size-small {
+    //小字
+    font-size: $body-font-size-s;
   }
 }
 </style>

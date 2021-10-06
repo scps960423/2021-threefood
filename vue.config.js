@@ -1,4 +1,7 @@
 module.exports = {
+    publicPath: process.env.NODE_ENV === 'production' ?
+        '/2021-threefood/' :
+        '/',
     filenameHashing: false,
     configureWebpack: {
         devtool: 'source-map'
@@ -15,4 +18,13 @@ module.exports = {
             }
         }
     },
+    css: {
+        loaderOptions: {
+            sass: {
+                prependData: `
+               @import "@/assets/scss/style.scss";
+            `
+            }
+        }
+    }
 }
