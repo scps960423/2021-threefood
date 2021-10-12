@@ -42,7 +42,7 @@ export default {
     getData: function () {
       //init 畫面的時候要先取得資料
       let _url =
-        "https://data.ntpc.gov.tw/api/datasets/71CD1490-A2DF-4198-BEF1-318479775E8A/json/preview";
+        "/api/datasets/71CD1490-A2DF-4198-BEF1-318479775E8A/json/preview";
 
       this.$http
         .get(_url)
