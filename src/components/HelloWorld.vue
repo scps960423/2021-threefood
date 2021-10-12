@@ -1,6 +1,11 @@
 <template>
-  <div class="hello">
-    <div>地址:  {{ ar }},名稱: {{ sna }},區域: {{ sarea }}</div>
+  <div class="openData">
+
+    <div>
+      <span>地址:  {{ ar }}</span>
+      <span>名稱: {{ sna }}</span>
+      <span>區域: {{ sarea }}</span>
+      </div>
   </div>
 </template>
 
@@ -17,19 +22,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.openData{
+  >div{
+    display: flex
+  }
+  span{
+    border: $border;
+    flex: 1;
+    padding: 10px;
+  }
 }
 </style>
 

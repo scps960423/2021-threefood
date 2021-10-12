@@ -15,6 +15,7 @@
     @extend %center;
     background-color: $white;
     border: $border;
+    text-align: center;
   }
 }
 </style>

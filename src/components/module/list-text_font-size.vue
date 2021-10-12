@@ -4,30 +4,13 @@
       <div class="ct">
         <div class="in">
           <ul data-index="1" data-child="3">
-            <li
-              data-index="1"
-              :class="'small ' + (dataFontSize == 'small' ? ' is-active' : '')"
-            >
-              <span
-                ><a href="#" v-on:click.stop="fontSize('small')">小</a></span
-              >
+            <li :class="'small ' + (dataFontSize == 'small' ? ' is-active' : '')">
+              <span><a href="#" v-on:click.stop="fontSize('small')">小</a></span>
             </li>
-            <li
-              data-index="2"
-              :class="
-                'medium ' + (dataFontSize == 'medium' ? ' is-active' : '')
-              "
-            >
-              <span
-                ><a href="#" v-on:click.stop="fontSize('medium')"
-                  >中{{ dataFontSize }}</a
-                ></span
-              >
+            <li :class="'medium ' + (dataFontSize == 'medium' ? ' is-active' : '')">
+              <span><a href="#" v-on:click.stop="fontSize('medium')">中</a></span>
             </li>
-            <li
-              data-index="3"
-              :class="'large ' + (dataFontSize == 'large' ? ' is-active' : '')"
-            >
+            <li :class="'large ' + (dataFontSize == 'large' ? ' is-active' : '')">
               <span><a href="#"  v-on:click.stop="fontSize('large')">大</a></span>
             </li>
           </ul>
@@ -44,10 +27,7 @@ export default {
   },
   methods: {
     fontSize: function (size) {
-      // this.$parent.dataFontSize="123485";
-      console.log(size, this.$root.sysFontSize);
       this.$root.sysFontSize = size;
-      console.log(size, this.$root.sysFontSize);
     },
   },
 };

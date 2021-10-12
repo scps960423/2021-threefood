@@ -2,8 +2,8 @@
   <!-- <baseMobile :menu="menu" /> -->
   <div class=" base-wrapper">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <div>12456798 TEST</div>
-    <div v-for="(item, idx) in PL" :key="idx" style="margin: 10px">
+    <!-- <div>12456798 TEST</div> -->
+    <div v-for="(item, idx) in PL" :key="idx">
     
       <HelloWorld :ar="item.ar" :sna="item.sna" :sarea="item.sarea" />
     </div>
@@ -42,7 +42,7 @@ export default {
     getData: function () {
       //init 畫面的時候要先取得資料
       let _url =
-        "/api/datasets/71CD1490-A2DF-4198-BEF1-318479775E8A/json/preview";
+        "https://data.ntpc.gov.tw/api/datasets/71CD1490-A2DF-4198-BEF1-318479775E8A/json/preview";
 
       this.$http
         .get(_url)
@@ -65,5 +65,6 @@ export default {
 <style scoped lang="scss">
 .base-wrapper {
   // background-color: $mainColor;
+  
 }
 </style>
